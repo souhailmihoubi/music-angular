@@ -8,6 +8,13 @@ import { AddSongComponent } from './add-song/add-song.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { AddAlbumComponent } from './add-album/add-album.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UpdateSongComponent } from './update-song/update-song.component';
+import { RechercheParAlbumComponent } from './recherche-par-album/recherche-par-album.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -16,13 +23,19 @@ import { HomeComponent } from './home/home.component';
     AddSongComponent,
     AlbumsComponent,
     AddAlbumComponent,
-    HomeComponent
+    HomeComponent,
+    UpdateSongComponent,
+    RechercheParAlbumComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

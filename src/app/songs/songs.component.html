@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="card shadow mb-4 mt-3 bg-light">
+        <div class="card-body">
+            <div class="row">
+                <h2>Songs List</h2>
+                <div class="col-sm-4 col-md-4 col-lg-4 mb-4" >
+                    <select class="form-control" id="idAlbum" name="idAlbum" [(ngModel)]="IdAlbum" (change)="onChange()">
+                        <option disabled>--Select Album--</option>
+                        <option  value="all">All</option>
+                        <option *ngFor="let album of albums" value="{{album.idAlbum}}">
+                            {{album.albumName}}
+                        </option>
+                    </select>
+                </div>
+                <form class="form-inline col-sm-4 col-md-4 col-lg-4 mb-4">
+                    <input class="form-control mr-sm-2" type="search"  [(ngModel)]="songName" name="songName"  placeholder="Search for Song" aria-label="Search">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" (click)="searchSong()" type="submit">Search</button>
+                  </form>
+                <a routerLink="/add-song" class="btn btn-success w-10 ml-auto mb-4 ">Add Song</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Album</th>
+                        <th>Name</th>
+                        <th>Featuring</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let song of songs">
+                    <tr>
+                        <td>{{song.idSong}}</td>
+                        <td>{{song?.album?.albumName}}</td>
+                        <td>{{song.songName}}</td>
+                        <td>{{song.featuring}}</td>
+                        <td>{{song.duration}}</td>
+                        <td>
+                            <a class="btn btn-primary" [routerLink]="['/updateSong',song.idSong]"> <i
+                                    class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
+                            <a class="btn btn-danger" (click)="deleteSong(song)"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

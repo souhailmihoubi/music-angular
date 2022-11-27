@@ -1,38 +1,39 @@
 <div class="container">
 
+    <div class="card" style=" margin-top: 40px;">
 
-
-    <div class="card shadow mb-4 mt-3 bg-light" style=" margin-top: 50px;">
 
         <div class="row ml-auto">
 
             <div class="col-sm-4 col-md-4 col-lg-9 mt-3">
                 <label>Album</label>
-                <select class="form-control w-50" id="idAlbum" name="idAlbum" [(ngModel)]="newIdAlb">
+                <select class="form-control w-50" id="idAlbum" name="idAlbum" [(ngModel)]="updatedAlbumId">
                     <option *ngFor="let alb of albums" [value]="alb.idAlbum">
                         {{alb.albumName}}
                     </option>
                 </select>
             </div>
+
             <div hidden class="col-sm-2 col-md-2 col-lg-3 mt-3">
                 <label>Song ID</label>
-                <input type="text" [(ngModel)]="newSong.idSong" name="idSong" class="form-control">
+                <input readonly type="text" [(ngModel)]="currentSong.idSong" name="idSong" class="form-control">
             </div>
+            
             <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                 <label>Song Name</label>
-                <input type="text" [(ngModel)]="newSong.songName" name="songName" class="form-control">
+                <input type="text" [(ngModel)]="currentSong.songName" name="songName" class="form-control">
             </div>
             <div class="col-sm-6 col-md-6 col-lg-7 mt-3">
                 <label>Featuring</label>
-                <input type="text" [(ngModel)]="newSong.featuring" name="featuring" class="form-control w-50">
+                <input type="text" [(ngModel)]="currentSong.featuring" name="featuring" class="form-control">
             </div>
-            <div class="col-sm-2 col-md-2 col-lg-6 mt-3">
+            <div class="col-sm-2 col-md-2 col-lg-12 mt-3">
                 <label>Duration</label>
-                <input type="number" [(ngModel)]="newSong.duration" name="duration" class="form-control w-25">
+                <input type="number" [(ngModel)]="currentSong.duration" name="duration" class="form-control w-25">
             </div>
 
             <div class="col-12  mt-3 mb-3">
-                <button type="submit" (click)="addSong()" class="btn btn-success w-25">Add</button>
+                <button type="submit" (click)="updateSong()" class="btn btn-success w-25">Update</button>
             </div>
             <div class="col-12 mb-3">
                 <a type="submit" routerLink="/songs" class="btn btn-secondary w-25">Back to List</a>
