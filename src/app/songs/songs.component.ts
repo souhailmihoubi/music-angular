@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../model/album.model';
 import { Song } from '../model/song.model';
+import { AuthService } from '../services/auth.service';
 import { SongService } from '../services/song.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class SongsComponent implements OnInit {
   IdAlbum!: number;
   songName!: string;
 
-  constructor(private songService: SongService) {}
+  constructor(private songService: SongService, public authService: AuthService) {}
 
   ngOnInit(): void {
     this.songService.songsList().subscribe((sngs) => {

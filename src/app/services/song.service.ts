@@ -15,6 +15,8 @@ const httpOptions = {
 })
 export class SongService {
   apiURLAlbum: string = 'http://localhost:8080/music/album';
+  apiURLAlbum1: string = 'http://localhost:8080/music/api/album';
+
 
   songs!: Song[];
   albums!: Album[];
@@ -31,6 +33,9 @@ export class SongService {
     return this.http.get<AlbumWrapper>(this.apiURLAlbum);
   }
 
+  albumList1(): Observable<Album[]> {
+    return this.http.get<Album[]>(this.apiURLAlbum1);
+  }
   consultAlbum(id: number): Album {
     return this.albums.find((alb) => alb.idAlbum == id)!;
   }
@@ -46,6 +51,10 @@ export class SongService {
 
   deleteSong(id: number) {
     const url = `${apiURL}/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+  deleteAlbum(id: number) {
+    const url = `${this.apiURLAlbum}/${id}`;
     return this.http.delete(url, httpOptions);
   }
 
@@ -70,8 +79,26 @@ export class SongService {
     return this.http.get<Song[]>(url);
   }
 
-  searchSong(name: string):Observable< Song[]> {
+  searchSong(name: string): Observable<Song[]> {
     const url = `${apiURL}/songsByName/${name}`;
     return this.http.get<Song[]>(url);
-    }
+  }
+
+  addAlbum(alb: Album): Observable<Album> {
+    console.log(alb);
+    return this.http.post<Album>(this.apiURLAlbum, alb, httpOptions);
+  }
+
+  uploadImage(file : File , filename : string) {
+
+    const imageFormData = new FormData();
+    imageFormData.append('image', file, filename);
+    const url = `${apiURL + "/image/upload"}`
+    return this.http.post(url ,imageFormData)
+  }
+
+  loadImage(id: number) {
+    const url = `${apiURL + '/image/get/info'}/${id}`;
+    return this.http.get(url);
+  } 
 }

@@ -1,1 +1,82 @@
-<p>albums works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albums</title>
+
+
+</head>
+
+<body>
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    </div>
+    <div class="text-right mt-4" style="margin-right:50px ;">
+        <a class="btn btn-success" style="width: 4rem;" data-toggle="tooltip" data-placement="top" title="Add Album"
+            data-toggle="modal" data-target="#addModal">
+            <i class="fa-solid fa-plus"></i></a>
+    </div>
+    <div class="card-deck mt-4 ml-5">
+        <div *ngFor="let album of albums ; let i = index">
+
+            <div class="card  shadow p-3 mb-5 bg-white rounded" style="width: 17rem;">
+                <a class="btn btn-danger ml-auto btn-sm mb-1"  (click)="deleteAlbum(album)"><i class="fa-light fa-x"></i></a>
+                <!-- <img class="card-img-top mt-1" src="{{listImages[i]}}" alt="Card image cap" > -->
+                <div class="card-body">
+                    <h5 class="card-title">{{album.albumName}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{album.singerName}}</h6>
+                    <p class="card-text">Relesed {{album.releaseDate | date:'dd/MM/yyyy'}}</p>
+                    <a class="btn btn-outline-success " routerLink="/songs">See Songs</a><br />
+                    <a  (click)="updateAlbum(album)" class="btn btn-outline-secondary mt-2" data-toggle="modal" data-target="#editModal"><i
+                            class="fa fa-pencil" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Album</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <app-update-album [albums]="updatedAlbum" [ajout]="ajout" (albumUpdated)= "albumUpdated($event)"></app-update-album>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Album</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <app-update-album [albums]="updatedAlbum" [ajout]="ajout" (albumUpdated)= "albumUpdated($event)"></app-update-album>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
+
+</body>
+
+</html>

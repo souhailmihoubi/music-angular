@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Always Music</title>
+    
 </head>
 
 <body>
@@ -27,23 +28,23 @@
                     </li>
                 </ul>
             </div>
+
+            
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        [username]
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">login</a>
-                        <a class="dropdown-item" href="#">logout</a>
-                        <a class="dropdown-item" href="#">Profile</a>
-                    </div>
+                <li *ngIf="!authService.loggedUser" class="nav-item active">
+                    <a class="nav-link" routerLink="/login">Login</a>
                 </li>
+                <li *ngIf="authService.loggedUser" class="nav-item active">
+                    <a class="nav-link" routerLink="/profile">{{authService.loggedUser}}</a>
+                </li>
+                <li *ngIf="authService.loggedUser" class="nav-item active">
+                    <a class="nav-link" (click) = "onLogout()">Logout</a>
+                </li>          
             </ul>
         </div>
     </nav>
 
-
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>>
     
 
     

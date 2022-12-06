@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateSongComponent } from './update-song/update-song.component';
 import { RechercheParAlbumComponent } from './recherche-par-album/recherche-par-album.component';
+import { UpdateAlbumComponent } from './update-album/update-album.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+
 
 
 
@@ -25,7 +29,12 @@ import { RechercheParAlbumComponent } from './recherche-par-album/recherche-par-
     AddAlbumComponent,
     HomeComponent,
     UpdateSongComponent,
-    RechercheParAlbumComponent
+    RechercheParAlbumComponent,
+    UpdateAlbumComponent,
+    LoginComponent,
+    ForbiddenComponent,
+
+
   ],
   imports: [
     BrowserModule,

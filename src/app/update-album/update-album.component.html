@@ -1,0 +1,14 @@
+<form>
+    <div class="modal-body" >
+        <label>Album Name</label>
+        <input type="text" [(ngModel)]="albums.albumName" name="albumName" class="form-control w-50">
+        <label>Singer Name</label>
+        <input type="text" [(ngModel)]="albums.singerName" name="singerName"  class="form-control w-50">
+        <label>Date Released</label>
+        <input type="date" [(ngModel)]="albums.releaseDate" name="releaseDate" class="form-control w-50">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="!albums.albumName"  (click)="saveAlbum()">{{ajout ? 'Add' : 'Edit'}}</button>
+    </div>
+</form>
